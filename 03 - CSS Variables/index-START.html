@@ -10,10 +10,10 @@
 
   <div class="controls">
     <label for="spacing">Spacing:</label>
-    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px" onChange="ChangeSpacing(this.value)">
 
     <label for="blur">Blur:</label>
-    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px" onchange="ChangeBlur(this.value)">
 
     <label for="base">Base Color</label>
     <input id="base" type="color" name="base" value="#ffc600">
@@ -43,9 +43,23 @@
     input {
       width: 100px;
     }
+
+    img {
+      filter: blur(10px);
+    }
   </style>
 
   <script>
+    function ChangeBlur(value) {
+      let image = document.querySelector("img");
+      image.style.filter = `blur(${value}px)`;
+    };
+
+    function ChangeSpacing(value) {
+      let image = document.querySelector("img");
+      image.style.padding = `${10}px`;
+    }
+
   </script>
 
 </body>
