@@ -58,18 +58,53 @@
     }
 
     .hand {
-      width: 50%;
+      width:50%;
       height: 6px;
-      background: black;
       position: absolute;
       top: 50%;
+      transform-origin: 100%;
+      transform:rotate(90deg);
+      transition:all 0.5s;
+      transition-timing-function: cubic-bezier(0.1,2.7,0.58,1);
+    }
+
+    .hour-hand {
+      background: black;
+    }
+    .min-hand {
+      background: #c41d1d;
+    }
+    .second-hand {
+      background: #018DED;
+
     }
 
   </style>
 
   <script>
 
+    function setDate() {
+      //run every second
+      let hour_hand = document.querySelector(".hour-hand");
+      let min_hand = document.querySelector(".min-hand");
+      let second_hand = document.querySelector(".second-hand");
+      
+      let now = new Date();
+      
+      let seconds = now.getSeconds();
+      let min = now.getMinutes();
+      let hour = now.getHours();
 
+      second_hand.style.transform = `rotate(${seconds*6+90}deg)`;
+      min_hand.style.transform = `rotate(${min*6+90}deg)`;
+      hour_hand.style.transform = `rotate(${hour*30+90}deg)`;
+
+    }
+
+    setInterval(setDate,1000);
+
+    // setDate();
+    
   </script>
 </body>
 </html>
